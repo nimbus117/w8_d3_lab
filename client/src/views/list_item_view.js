@@ -9,6 +9,10 @@ ListItemView.prototype.render = function (listItem) {
   goal.textContent = `Goal: ${listItem.goal}`;
   this.element.appendChild(goal);
 
+  const createdDate = document.createElement('p')
+  createdDate.textContent = `Created Date: ${listItem.created_date}`;
+  this.element.appendChild(createdDate);
+
   const completedDate = document.createElement('p')
   completedDate.textContent = `Completed Date: ${listItem.completed_date}`;
   this.element.appendChild(completedDate);

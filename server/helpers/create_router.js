@@ -5,21 +5,17 @@ const createRouter = function(collection){
 
   const router = express.Router();
 
-  // const findAll = (res) =>{
-  //   return collection.find().toArray()
-  //   .then(docs => res.json(docs));
-  // };
-  //
-  // router.get('/', (req,res) => {
-  //   findAll(res);
-  // });
+  const addTimestamp = function(doc){
+    doc['created_date'] = doc._id.getTimestamp().toGMTString();
+    return doc;
+  };
 
   //Show All
   router.get('/', (req, res) => {
     collection
       .find()
       .toArray()
-      .then((docs) => res.json(docs))
+      .then((docs) => res.json(docs.map(addTimestamp)))
       .catch((err) => {
         console.error(err);
         res.status(500);
@@ -51,7 +47,7 @@ const createRouter = function(collection){
         .find()
         .toArray()
       .then((docs) => {
-        res.json(docs);
+        res.json(docs.map(addTimestamp));
       });
       });
   });
@@ -65,7 +61,7 @@ const createRouter = function(collection){
         collection
           .find()
           .toArray()
-          .then((docs) => res.json(docs));
+          .then((docs) => res.json(docs.map(addTimestamp)));
       })
       .catch((err) => {
         console.error(err);
@@ -84,7 +80,7 @@ const createRouter = function(collection){
       { $set: updatedData}
     )
     .then(() => collection.find().toArray())
-    .then((docs) => res.json(docs));
+    .then((docs) => res.json(docs.map(addTimestamp)));
   });
 
   return router;
