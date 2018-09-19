@@ -6,7 +6,18 @@ const BucketList = function (url) {
 
 }
 BucketList.prototype.bindEvents = function () {
+  PubSub.subscribe('FormView:new-list-item', (evt) => {
+    this.postNewGoal(evt.detail);
+  });
+};
 
+BucketList.prototype.postNewGoal = function (goal) {
+  const request = new Request(this.url);
+  request.post(goal)
+    .then((goals) => {
+      PubSub.publish('BucketList:all', goals)
+    })
+    .catch(console.error)
 };
 
 BucketList.prototype.getData = function () {
