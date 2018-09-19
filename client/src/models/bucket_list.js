@@ -29,7 +29,7 @@ BucketList.prototype.deleteGoal = function (goalID) {
 
 BucketList.prototype.completedGoal = function (goalID) {
   const request = new Request(this.url);
-  const date = new Date().toGMTString();
+  const date = new Date().toGMTString().substring(0,16);
   const completedDate = {"completed_date": date}
   request.put(goalID, completedDate)
     .then((goals) => {

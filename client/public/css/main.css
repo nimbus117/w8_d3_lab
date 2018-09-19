@@ -1,0 +1,37 @@
+body{
+background-color: #ccffcc;
+width: 100%;
+padding: 20px;
+}
+
+
+
+#goals-list {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.list-item{
+  border-radius: 10px;
+  border: solid 1px black;
+  padding: 10px;
+  margin: 10px;
+  background-color: #ffffcc;
+  height: auto;
+  width: 350px;
+}
+
+.goal-completed{
+  background-color: #c1d7d7;
+}
+
+.delete-button{
+  background-color:red;
+  color: white;
+}
+
+.completed-button{
+  background-color: green;
+  color:white;
+}

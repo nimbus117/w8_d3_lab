@@ -18,6 +18,7 @@ ListItemView.prototype.render = function (listItem) {
   this.element.appendChild(completedDate);
 
   const deleteButton = document.createElement('button')
+  deleteButton.classList.add('delete-button');
   deleteButton.textContent = 'Delete';
   deleteButton.value = listItem._id;
   this.element.appendChild(deleteButton);
@@ -27,14 +28,14 @@ ListItemView.prototype.render = function (listItem) {
 
   if(listItem.completed_date === ''){
     const completedButton = document.createElement('button')
+    completedButton.classList.add('completed-button');
     completedButton.textContent = 'Completed';
     completedButton.value = listItem._id;
     this.element.appendChild(completedButton);
     completedButton.addEventListener('click', (evt) => {
       PubSub.publish('ListItemView:completed', event.target.value)
     });
-  }
-
+  }else{this.element.classList.add('goal-completed');}
 };
 
 

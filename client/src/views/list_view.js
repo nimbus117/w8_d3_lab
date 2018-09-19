@@ -10,6 +10,7 @@ PubSub.subscribe('BucketList:all', (evt) => {
   this.element.innerHTML = '';
   evt.detail.forEach((item) => {
     const div = document.createElement('div');
+    div.classList.add('list-item');
     this.element.appendChild(div)
     const listItem = new ListItemView(div);
     listItem.render(item)
