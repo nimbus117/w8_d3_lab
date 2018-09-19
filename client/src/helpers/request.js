@@ -16,8 +16,8 @@ Request.prototype.post = function (payload) {
     .then((response) => response.json());
 };
 
-Request.prototype.put = function (payload) {
-  return fetch(this.url, {
+Request.prototype.put = function (id, payload) {
+  return fetch(`${this.url}/${id}`, {
     method: 'PUT',
     body: JSON.stringify(payload),
     headers: { 'Content-Type': 'application/json' }
