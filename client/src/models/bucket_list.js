@@ -9,6 +9,18 @@ BucketList.prototype.bindEvents = function () {
   PubSub.subscribe('FormView:new-list-item', (evt) => {
     this.postNewGoal(evt.detail);
   });
+  PubSub.subscribe('ListItemView:delete', (evt) => {
+    this.deleteGoal(evt.detail);
+  });
+};
+
+BucketList.prototype.deleteGoal = function (goalID) {
+  const request = new Request(this.url);
+  request.delete(goalID)
+    .then((goals) => {
+      PubSub.publish('BucketList:all', goals)
+    })
+    .catch(console.error)
 };
 
 BucketList.prototype.postNewGoal = function (goal) {
