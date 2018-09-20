@@ -12,4 +12,4 @@
 
 Build a bucket list browser web-app, that allows a user to create a list of things they want to do in their lifetime. The bucket list items should be stored in a MongoDB via an JSON API in Express.
 
-![Bucket List](https://user-images.githubusercontent.com/37874299/45762554-86bb4880-bc26-11e8-90e9-869a34d7862f.png)
+![Bucket List](https://user-images.githubusercontent.com/37874299/45805815-6daea800-bcb7-11e8-8ff3-d69496ccec3b.png)
