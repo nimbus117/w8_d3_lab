@@ -2,59 +2,47 @@ const PubSub = require('../helpers/pub_sub.js');
 const Request = require('../helpers/request.js');
 
 const BucketList = function (url) {
-  this.url = url
-
-}
+  this.url = url;
+};
 
 BucketList.prototype.bindEvents = function () {
-  PubSub.subscribe('FormView:new-list-item', (evt) => {
-    this.postNewGoal(evt.detail);
-  });
-  PubSub.subscribe('ListItemView:delete', (evt) => {
-    this.deleteGoal(evt.detail);
-  });
-  PubSub.subscribe('ListItemView:completed', (evt) => {
-    this.completedGoal(evt.detail);
-  });
+  PubSub.subscribe('GoalFormView:new-goal', this.newGoal.bind(this));
+  PubSub.subscribe('GoalView:delete', this.deleteGoal.bind(this));
+  PubSub.subscribe('GoalView:complete', this.completeGoal.bind(this));
+};
+
+BucketList.prototype.publishAll = function (goals) {
+  PubSub.publish('BucketList:all-goals', goals);
+}
+
+BucketList.prototype.getData = function () {
+  new Request(this.url)
+    .get()
+    .then(this.publishAll)
+    .catch(console.error);
+};
+
+BucketList.prototype.newGoal = function (goal) {
+  new Request(this.url)
+    .post(goal.detail)
+    .then(this.publishAll)
+    .catch(console.error);
 };
 
 BucketList.prototype.deleteGoal = function (goalID) {
-  const request = new Request(this.url);
-  request.delete(goalID)
-    .then((goals) => {
-      PubSub.publish('BucketList:all', goals)
-    })
-    .catch(console.error)
+  new Request(this.url)
+    .delete(goalID.detail)
+    .then(this.publishAll)
+    .catch(console.error);
 };
 
-BucketList.prototype.completedGoal = function (goalID) {
-  const request = new Request(this.url);
+BucketList.prototype.completeGoal = function (goalID) {
   const date = new Date().toGMTString().substring(0,16);
-  const completedDate = {"completed_date": date}
-  request.put(goalID, completedDate)
-    .then((goals) => {
-      PubSub.publish('BucketList:all', goals)
-    })
-    .catch(console.error)
-};
-
-BucketList.prototype.postNewGoal = function (goal) {
-  const request = new Request(this.url);
-  request.post(goal)
-    .then((goals) => {
-      PubSub.publish('BucketList:all', goals)
-    })
-    .catch(console.error)
-};
-
-BucketList.prototype.getData = function () {
-  const request = new Request(this.url);
-  request.get()
-  .then((list) => {
-PubSub.publish('BucketList:all', list)
-console.log(list);
-  })
-  .catch(console.error)
+  const completedDate = { "completed": date };
+  new Request(this.url)
+    .put(goalID.detail, completedDate)
+    .then(this.publishAll)
+    .catch(console.error);
 };
 
 module.exports = BucketList;

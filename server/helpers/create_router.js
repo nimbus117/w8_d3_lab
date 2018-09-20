@@ -6,7 +6,7 @@ const createRouter = function (collection) {
   const router = express.Router();
 
   const addTimestamp = function (doc) {
-    doc['created_date'] = doc._id
+    doc['created'] = doc._id
       .getTimestamp().toGMTString().substring(0,16);
     return doc;
   };

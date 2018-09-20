@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Bucket List</title>
-    <script src="/js/bundle.js"></script>
-    <link rel="stylesheet" href="/css/main.css">
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>Bucket List</title>
+  <script src="/js/bundle.js"></script>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div id="header">
     <h1>Bucket List</h1>
-    <div class="wrapper">
-        <div>
-          <h2>Add a Goal</h2>
-          <form id="goal-form">
-            <div>
-              <label for="goal">Goal:</label>
-              <input type="text" id="goal"/>
-                <input type="submit" value="Save" id="save"/>
-            </div>
-
-
-          </form>
-        </div>
-        <div>
-          <h2>List of Goals</h2>
-          <div id="goals-list"></div>
-        </div>
-    </div>
-  </body>
+    <form id="goal-form">
+      <label for="goal">Enter new goal:</label>
+      <input type="text" id="goal" required/>
+        <input type="submit" value="Save" id="save"/>
+    </form>
+  </div>
+  <div id="bucket-list"></div>
+</body>
 </html>

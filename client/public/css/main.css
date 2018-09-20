@@ -1,37 +1,46 @@
-body{
-background-color: #ccffcc;
-width: 100%;
-padding: 20px;
+body {
+  background-color: aliceblue;
 }
 
+h3 {
+  font-size: 1.2em;
+}
 
+h1, #goal-form {
+  text-align: center;
+}
 
-#goals-list {
+button, #save {
+  cursor: pointer;
+}
+
+#bucket-list {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-
+  justify-content: center;
 }
 
-.list-item{
-  border-radius: 10px;
+.goal {
   border: solid 1px black;
+  box-shadow: 3px 3px #888888;
   padding: 10px;
   margin: 10px;
   background-color: #ffffcc;
-  height: auto;
   width: 350px;
 }
 
-.goal-completed{
-  background-color: #c1d7d7;
+.goal-completed {
+  background-color: #ccffcc;
 }
 
-.delete-button{
+.delete-button {
   background-color:red;
   color: white;
+  margin-right: 5px;
 }
 
-.completed-button{
+.complete-button {
   background-color: green;
   color:white;
 }

@@ -3,35 +3,35 @@ db.dropDatabase();
 
 db.list.insertMany([
   {
-    goal: "Swim with dolphins",
-    completed_date:""
+    title: "Swim with dolphins",
+    completed:""
   },
   {
-    goal: "Visit China",
-    completed_date:""
+    title: "Visit China",
+    completed:""
   },
   {
-    goal: "Learn Dutch",
-    completed_date:""
+    title: "Learn Dutch",
+    completed:""
   },
   {
-    goal: "Climb a rock wall",
-    completed_date:""
+    title: "Climb a rock wall",
+    completed:""
   },
   {
-    goal: "Swim with dolphins",
-    completed_date:""
+    title: "Swim with dolphins",
+    completed:""
   },
   {
-    goal: "Visit China",
-    completed_date:""
+    title: "Visit China",
+    completed:""
   },
   {
-    goal: "Learn Dutch",
-    completed_date:""
+    title: "Learn Dutch",
+    completed:""
   },
   {
-    goal: "Climb a rock wall",
-    completed_date:""
+    title: "Climb a rock wall",
+    completed:""
   }
 ])
